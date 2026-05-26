@@ -1,10 +1,10 @@
 # Alzheimer’s Disease Detection via Voting-Based Ensemble ML
 
-[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/)
-[![Django Version](https://img.shields.io/badge/django-2.1.7-green.svg)](https://www.djangoproject.com/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
+[![Django Version](https://img.shields.io/badge/django-4.2_LTS-green.svg)](https://www.djangoproject.com/)
+[![Database](https://img.shields.io/badge/database-PostgreSQL-blue.svg)](https://supabase.com/)
 
-An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. 
+An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. This project implements a high-performance **Voting-Based Ensemble** model, achieving superior predictive accuracy by combining multiple specialized machine learning algorithms.
 
 **Live Demo:** [https://web-production-3ca46.up.railway.app/](https://web-production-3ca46.up.railway.app/)
 
@@ -15,9 +15,9 @@ An advanced diagnostic decision-support system designed to identify Alzheimer's 
 The application follows a clean, decoupled architecture optimized for scalability and thread safety:
 
 -   **Frontend:** Responsive UI built with **Tailwind CSS** and **Inter Typography**, ensuring a professional experience across desktop and mobile.
--   **Backend:** **Django 2.1.7** utilizing a stateless service layer for ML operations.
--   **Database:** **MySQL** with **Django ORM** integration for secure, encrypted user management.
--   **ML Pipeline:** Decoupled service layer (`ml_service.py`) with artifact persistence via **Joblib**.
+-   **Backend:** **Django 4.2 LTS** utilizing a stateless service layer for ML operations, fully compatible with modern serverless and containerized environments.
+-   **Database:** **PostgreSQL (Supabase)** with **Django ORM** integration for secure, encrypted user management.
+-   **ML Pipeline:** Decoupled service layer (`ml_service.py`) with artifact persistence via **Joblib**, supporting high-concurrency diagnostic requests.
 
 ---
 
@@ -40,35 +40,20 @@ Our **VotingClassifier** utilizes a "Hard Voting" strategy, aggregating predicti
 ## 🚀 Installation & Setup
 
 ### Prerequisites
--   Python 3.7.9 (Optimized for legacy TF/Keras compatibility)
--   MySQL Server 8.0+
+-   Python 3.12+
+-   PostgreSQL (Cloud hosting via **Supabase** recommended)
 
-### 1. Database Configuration
-Create the application database and legacy registration table:
-```sql
-CREATE DATABASE alzheimer;
-USE alzheimer;
-
-CREATE TABLE register(
-    username VARCHAR(50) PRIMARY KEY,
-    password VARCHAR(50),
-    contact_no VARCHAR(20),
-    email VARCHAR(50), 
-    address VARCHAR(80)
-);
-```
-
-### 2. Environment Setup
+### 1. Environment Setup
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Vivek6412/alzheimers-ml-detection.git
 cd Alzheimer
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Application Initialization (MANDATORY)
+### 2. Application Initialization (MANDATORY)
 Run these commands to initialize the secure database schema and build essential tables:
 ```bash
 # Generate and Apply Django Migrations
@@ -85,6 +70,7 @@ python manage.py runserver 8000
 -   **SQL Injection Prevention:** 100% ORM-backed database interactions.
 -   **Cryptographic Hashing:** User passwords are encrypted using **PBKDF2 with SHA256**.
 -   **Access Control:** All diagnostic features are protected by Django’s `SessionAuthentication` and `@login_required` middleware.
+-   **Cloud Parity:** Environment-based configuration for secret keys and database credentials.
 
 ---
 
@@ -95,11 +81,12 @@ python manage.py runserver 8000
 ├── DetectionApp/        # Application Logic
 │   ├── ml_service.py    # Isolated Machine Learning Pipeline
 │   ├── models.py        # ORM Schema Definitions
-│   ├── views.py         # Request Controllers
-│   └── templates/       # Modern Responsive UI
-├── model_artifacts/     # Persisted Models (joblib)
-└── requirements.txt     # Dependency manifest
+│   ├── views.py         # Request Controllers (Clean & Secure)
+│   └── templates/       # Modern Responsive UI (Tailwind)
+├── model_artifacts/     # Persisted ML Models (joblib)
+├── README.md            # Technical Documentation
+└── requirements.txt     # Production Dependency Manifest
 ```
 
 ---
-© 2026 AlzheimerCare AI. Developed with a focus on medical diagnostic accuracy and security.
+© 2026 AlzheimerCare AI. Developed with a focus on medical diagnostic accuracy and cloud-native security.
