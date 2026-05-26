@@ -44,7 +44,7 @@ def process_dataset(csv_path):
     dataset = pd.read_csv(csv_path)
     dataset.fillna(0, inplace=True)
     
-    Y = dataset['Diagnosis'].ravel()
+    Y = dataset['Diagnosis'].values.ravel()
     # Dropping columns based on original logic
     X_raw = dataset.drop(['PatientID', 'Diagnosis', 'DoctorInCharge'], axis=1)
     feature_names = X_raw.columns.tolist()
