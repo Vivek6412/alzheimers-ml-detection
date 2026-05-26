@@ -4,6 +4,8 @@
 [![Django Version](https://img.shields.io/badge/django-4.2_LTS-green.svg)](https://www.djangoproject.com/)
 [![Database](https://img.shields.io/badge/database-PostgreSQL-blue.svg)](https://supabase.com/)
 
+## About
+
 An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. This project implements a high-performance Voting-Based Ensemble model, achieving superior predictive accuracy by combining multiple specialized machine learning algorithms.
 
 **Live Demo:** [https://web-production-3ca46.up.railway.app/](https://web-production-3ca46.up.railway.app/)
