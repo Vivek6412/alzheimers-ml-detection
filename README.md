@@ -4,32 +4,32 @@
 [![Django Version](https://img.shields.io/badge/django-4.2_LTS-green.svg)](https://www.djangoproject.com/)
 [![Database](https://img.shields.io/badge/database-PostgreSQL-blue.svg)](https://supabase.com/)
 
-An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. This project implements a high-performance **Voting-Based Ensemble** model, achieving superior predictive accuracy by combining multiple specialized machine learning algorithms.
+An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. This project implements a high-performance Voting-Based Ensemble model, achieving superior predictive accuracy by combining multiple specialized machine learning algorithms.
 
 **Live Demo:** [https://web-production-3ca46.up.railway.app/](https://web-production-3ca46.up.railway.app/)
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 The application follows a clean, decoupled architecture optimized for scalability and thread safety:
 
--   **Frontend:** Responsive UI built with **Tailwind CSS** and **Inter Typography**, ensuring a professional experience across desktop and mobile.
--   **Backend:** **Django 4.2 LTS** utilizing a stateless service layer for ML operations, fully compatible with modern serverless and containerized environments.
--   **Database:** **PostgreSQL (Supabase)** with **Django ORM** integration for secure, encrypted user management.
--   **ML Pipeline:** Decoupled service layer (`ml_service.py`) with artifact persistence via **Joblib**, supporting high-concurrency diagnostic requests.
+-   **Frontend:** Responsive UI built with Tailwind CSS and Inter Typography, ensuring a professional experience across desktop and mobile.
+-   **Backend:** Django 4.2 LTS utilizing a stateless service layer for ML operations, fully compatible with modern serverless and containerized environments.
+-   **Database:** PostgreSQL (Supabase) with Django ORM integration for secure, encrypted user management.
+-   **ML Pipeline:** Decoupled service layer (ml_service.py) with artifact persistence via Joblib, supporting high-concurrency diagnostic requests.
 
 ---
 
-## 🧠 Machine Learning Methodology
+## Machine Learning Methodology
 
 ### 1. Data Preprocessing
 -   **Missing Value Imputation:** Automated handling of null entries.
--   **Standardization:** Feature scaling via `StandardScaler` to ensure uniform algorithm weight.
--   **Cognitive Feature Selection:** Utilizes custom **Principal Component Analysis (PCA)** to isolate high-variance cognitive markers.
+-   **Standardization:** Feature scaling via StandardScaler to ensure uniform algorithm weight.
+-   **Cognitive Feature Selection:** Utilizes custom Principal Component Analysis (PCA) to isolate high-variance cognitive markers.
 
 ### 2. The Ensemble Model
-Our **VotingClassifier** utilizes a "Hard Voting" strategy, aggregating predictions from:
+Our VotingClassifier utilizes a "Hard Voting" strategy, aggregating predictions from:
 -   **KNN & Decision Trees** (Local patterns)
 -   **Random Forest & AdaBoost** (Robust bagging/boosting)
 -   **XGBoost** (High-performance gradient boosting)
@@ -37,11 +37,11 @@ Our **VotingClassifier** utilizes a "Hard Voting" strategy, aggregating predicti
 
 ---
 
-## 🚀 Installation & Setup
+## Installation and Setup
 
 ### Prerequisites
 -   Python 3.12+
--   PostgreSQL (Cloud hosting via **Supabase** recommended)
+-   PostgreSQL (Cloud hosting via Supabase recommended)
 
 ### 1. Environment Setup
 ```bash
@@ -66,15 +66,15 @@ python manage.py runserver 8000
 
 ---
 
-## 🔒 Security Features
+## Security Features
 -   **SQL Injection Prevention:** 100% ORM-backed database interactions.
--   **Cryptographic Hashing:** User passwords are encrypted using **PBKDF2 with SHA256**.
--   **Access Control:** All diagnostic features are protected by Django’s `SessionAuthentication` and `@login_required` middleware.
+-   **Cryptographic Hashing:** User passwords are encrypted using PBKDF2 with SHA256.
+-   **Access Control:** All diagnostic features are protected by Django’s SessionAuthentication and @login_required middleware.
 -   **Cloud Parity:** Environment-based configuration for secret keys and database credentials.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 ```text
 ├── Dataset/             # Clinical CSV data samples
 ├── Detection/           # Core Project Configuration
@@ -89,4 +89,4 @@ python manage.py runserver 8000
 ```
 
 ---
-© 2026 AlzheimerCare AI. Developed with a focus on medical diagnostic accuracy and cloud-native security.
+Copyright 2026 AlzheimerCare AI. Developed with a focus on medical diagnostic accuracy and cloud-native security.
