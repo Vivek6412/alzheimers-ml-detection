@@ -67,20 +67,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Detection.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# Default to MySQL for local, but support Postgres via env var for Railway/Supabase
-DB_ENGINE = os.environ.get('DB_ENGINE', 'django.db.backends.mysql')
-
+# Database configuration optimized for Cloud/Supabase (PostgreSQL)
 DATABASES = {
     'default': {
-        'ENGINE': DB_ENGINE,
-        'NAME': os.environ.get('DB_NAME', 'alzheimer'),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('DB_PASS', 'Vivek@0000'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'postgres'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASS', 'your-password'),
         'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DB_PORT', '3306' if 'mysql' in DB_ENGINE else '5432'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 
