@@ -1,71 +1,62 @@
-{% load static %}
-<html>
-<head>
-<title>Early Detection of Alzheimer's Disease</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
- <script LANGUAGE="Javascript" >
- 
-function validate(){
-	var x=document.forms["f1"]["t1"].value;
-	
-	if(x == null || x==""){
-		window.alert("File must be upload");
-		document.f1.t1.focus();
-		return false;
-	}
-	
-	return true;
-}
-		
-	
-	</script>
-</head>
-<body>
-<div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<center><font size="4" color="white">Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach</font></center></font>
-		</div>
-		<div id="slogan">
-			
-		</div>
-	</div>
-	<div id="menu">
-		<ul><center>
-		<li><a href="{% url 'LoadDataset' %}"><font size="4" color="black">Load Alzheimer Dataset</font></a></font></li>
-	  <li><a href="{% url 'FeaturesExtraction' %}"><font size="4" color="black">Cognitive Features</font></a></font></li>
-	   <li><a href="{% url 'RunML' %}"><font size="4" color="black">Run Voting-Based Ensemble ML</font></a></font></li>
-	   <li><a href="{% url 'Predict' %}"><font size="4" color="black">Predict Disease</font></a></font></li>
-	    <li><a href="{% url 'index' %}"><font size="4" color="black">Logout</font></a></font></li>		
-		</center></ul>
-<br class="clearfix" />
-				</div>
-			
-	<div id="splash">
-		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
-	</div>	
-			<center>
-<form name="f1" method="post" action={% url 'PredictAction' %}  enctype="multipart/form-data" OnSubmit="return validate()">
-	{% csrf_token %}<br/>
-   <h3><b>Upload Test Data for Alzheimer Prediction</b></h3>
-   
-	<font size="" color="black"><center>{{ data|safe }}</center></font>
-						
-						<table align="center" width="80" >
-			 {{ data1|safe }}
-         
-		  
-		<tr><td><font size="" color="black">Upload&nbsp;Test&nbsp;Data</b></td><td><input type="file" name="t1" style="font-family: Comic Sans MS" size="15"/></td></tr>
+{% extends 'base.html' %}
 
-		 
-			<tr><td></td><td><input type="submit" value="Submit">
-			</td>
-			</table>
-			<br/><br/><br/><br/>
-				</div>	
-					
-				</div>
-				
-	</body>
-</html>
+{% block title %}Predict - AlzheimerCare AI{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <div class="bg-blue-600 px-8 py-8 flex items-center justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-white text-center">Predict Alzheimer's Disease</h2>
+                <p class="text-blue-100 text-sm mt-1">Upload patient data for instant diagnosis using our Voting Ensemble model</p>
+            </div>
+            <div class="bg-blue-500 p-3 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+            </div>
+        </div>
+        
+        <form method="post" action="{% url 'PredictAction' %}" enctype="multipart/form-data" class="p-8">
+            {% csrf_token %}
+            
+            <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8 flex gap-4">
+                <div class="text-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div class="text-sm text-blue-800">
+                    <p class="font-bold mb-1">Testing Instruction:</p>
+                    <p>Please ensure the uploaded CSV follows the correct schema (Age, BMI, MMSE, etc.) for accurate results.</p>
+                </div>
+            </div>
+
+            <div class="border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center hover:border-blue-400 transition-colors bg-slate-50">
+                <input type="file" name="t1" id="t1" required class="hidden">
+                <label for="t1" class="cursor-pointer">
+                    <div class="text-slate-600 font-medium mb-2">Upload Test Data File</div>
+                    <p class="text-slate-400 text-sm">Drag and drop your CSV file here</p>
+                </label>
+                <div id="file-name" class="mt-4 text-blue-600 font-bold text-sm hidden"></div>
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 mt-8 flex items-center justify-center gap-2">
+                Get Diagnostic Report
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('t1').addEventListener('change', function(e) {
+        const fileName = e.target.files[0]?.name;
+        if (fileName) {
+            const display = document.getElementById('file-name');
+            display.textContent = 'Selected: ' + fileName;
+            display.classList.remove('hidden');
+        }
+    });
+</script>
+{% endblock %}

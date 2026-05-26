@@ -12,5 +12,6 @@ urlpatterns = [path("index.html", views.index, name="index"),
 		     path("FeaturesExtraction", views.FeaturesExtraction, name="FeaturesExtraction"),
 		     path("RunML", views.RunML, name="RunML"),
 		     path("Predict", views.Predict, name="Predict"),
-		     path("PredictAction", views.PredictAction, name="PredictAction"),		     	     
+		     path("PredictAction", views.PredictAction, name="PredictAction"),
+		     path("UserLogout", views.UserLogout, name="UserLogout"),
 		    ]

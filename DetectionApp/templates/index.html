@@ -1,36 +1,57 @@
+{% extends 'base.html' %}
 {% load static %}
-<html>
-<head>
-<title>Early Detection of Alzheimer's Disease</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
-</head>
-<body>
-<div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<center><font size="4" color="white">Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach
-</font></center></font>
-		</div>
-		<div id="slogan">
-			
-		</div>
-	</div>
-	<div id="menu">
-		<ul><center>
-	  <li><a href="{% url 'index' %}"><font size="" color="black">Home</a></font></li>
-      <li><a href="{% url 'UserLogin' %}"><font size="" color="black">User Login</a></li>
-     <li><a href="{% url 'Register' %}"><font size="" color="black">New User Signup Here</a></li>	
-		</center></ul>
-		<br class="clearfix" />
-	</div>
-	<div id="splash">
-		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
-	</div>
-	<br/>
-	<p align="justify"><font size="3" style="font-family: Comic Sans MS" color="black"><center>
-		Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach
 
-</p>
-</body>
-</html>
+{% block title %}Home - AlzheimerCare AI{% endblock %}
+
+{% block content %}
+<div class="relative overflow-hidden bg-white rounded-3xl shadow-xl border border-slate-100">
+    <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 p-12 md:p-20">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-6">
+                Early Detection is <span class="text-blue-600">Life-Changing.</span>
+            </h1>
+            <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                Utilizing advanced Machine Learning and Cognitive Feature Analysis to provide accurate, voting-based ensemble predictions for Alzheimer's Disease.
+            </p>
+            <div class="flex gap-4">
+                <a href="{% url 'Register' %}" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200">Get Started</a>
+                <a href="{% url 'UserLogin' %}" class="bg-slate-100 text-slate-800 px-8 py-3 rounded-xl font-bold hover:bg-slate-200 transition-all">Sign In</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 relative h-96 md:h-auto self-stretch">
+            <img class="absolute inset-0 w-full h-full object-cover" src="{% static 'images/investor.jpg' %}" alt="Healthcare Professional">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent md:block hidden"></div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-20 grid md:grid-cols-3 gap-8">
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <div class="bg-blue-50 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Ensemble Accuracy</h3>
+        <p class="text-slate-500">Combines 7+ ML algorithms including XGBoost and Random Forest to ensure the highest possible diagnostic reliability.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <div class="bg-teal-50 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Cognitive Insights</h3>
+        <p class="text-slate-500">Advanced PCA and dimensionality reduction to isolate critical cognitive markers that traditional methods might miss.</p>
+    </div>
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+        <div class="bg-indigo-50 w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Secure & Private</h3>
+        <p class="text-slate-500">Industry-standard encryption and ORM-backed data management to protect sensitive patient diagnostic data.</p>
+    </div>
+</div>
+{% endblock %}

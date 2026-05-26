@@ -1,118 +1,66 @@
-{% load static %}
-<html>
-<head>
-<title>Early Detection of Alzheimer's Disease</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
- <script LANGUAGE="Javascript" >
- function checkEmail(t3) {
-	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(t3)){
-		return (true)
-	}
-	alert("Invalid E-mail Address! Please re-enter.")
-	return (false);
-}
-function validate(){
-	var x=document.forms["f1"]["t1"].value;
-	var y=document.forms["f1"]["t2"].value;
-	var contact=document.forms["f1"]["t3"].value;
-	var email=document.forms["f1"]["t4"].value;
-	var address=document.forms["f1"]["t5"].value;
-	
-	if(x == null || x==""){
-		window.alert("Username must be enter");
-		document.f1.t1.focus();
-		return false;
-	}
-	if(y == null || y==""){
-		window.alert("Password must be enter");
-		document.f1.t2.focus();
-		return false;
-	}
-	if(contact==0){
-		alert("Please enter contact no");
-		document.f1.t3.focus();
-		return false;
-	}
-	if(isNaN(contact)){
-		alert("Contact no  must be numeric");
-		document.f1.t3.focus();
-		return false;
-	}
-	if(contact.length != 10){
-		alert("Contact number must be 10 digits long");
-		document.f1.t3.focus();
-		return false;
-	}
-	if(email==0){
-		alert("Please Enter Email ID");
-		document.f1.t4.focus();
-		return false;
-	}
-	if(!checkEmail(email)){
-		document.f1.t4.focus();
-		return false;
-	}
-	if(address == null || address==""){
-		window.alert("Address must be enter");
-		document.f1.t5.focus();
-		return false;
-	}
-	return true;
-}
-		
-	
-	</script>
-</head>
-<body>
-<div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<center><font size="4" color="white">Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach</font></center></font>
-		</div>
-		<div id="slogan">
-			
-		</div>
-	</div>
-	<div id="menu">
-		<ul><center>
-	  <li><a href="{% url 'index' %}"><font size="" color="black">Home</a></font></li>
-      <li><a href="{% url 'UserLogin' %}"><font size="" color="black">User Login</a></li>
-     <li><a href="{% url 'Register' %}"><font size="" color="black">New User Signup Here</a></li>	
-		</center></ul>
-<br class="clearfix" />
-				</div>
-			
-	<div id="splash">
-		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
-	</div>	
-			<center>
-<form name="f1" method="post" action={% url 'RegisterAction' %} OnSubmit="return validate()">
-	{% csrf_token %}<br/>
-   <h3><b>New User Signup Screen</b></h3>
-   
-	<font size="" color="blue"><center>{{ data|safe }}</center></font>
-						
-						<table align="center" width="80" >
-			 <tr><td><font size="" color="black">Username&nbsp;&nbsp;</b></td><td><input type="text" name="t1" style="font-family: Comic Sans MS" size="25"/></td></tr>
-         
-		  
-		<tr><td><font size="" color="black">Password&nbsp;&nbsp;</b></td><td><input type="password" name="t2" style="font-family: Comic Sans MS" size="25"/></td></tr>
+{% extends 'base.html' %}
 
-		<tr><td><font size="" color="black">Contact&nbsp;No</b></td><td><input type="text" name="t3" style="font-family: Comic Sans MS" size="15"/></td></tr>
+{% block title %}Sign Up - AlzheimerCare AI{% endblock %}
 
-<tr><td><font size="" color="black">Email&nbsp;ID</b></td><td><input type="text" name="t4" style="font-family: Comic Sans MS" size="35"/></td></tr>
+{% block content %}
+<div class="max-w-xl mx-auto">
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <div class="bg-blue-600 px-8 py-6">
+            <h2 class="text-2xl font-bold text-white">Create Account</h2>
+            <p class="text-blue-100 text-sm mt-1">Join the network for advanced diagnostic analysis</p>
+        </div>
+        
+        <form method="post" action="{% url 'RegisterAction' %}" class="p-8 space-y-5">
+            {% csrf_token %}
+            
+            {% if data %}
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                    <p class="text-blue-700 text-sm font-medium">{{ data }}</p>
+                </div>
+            {% endif %}
 
-<tr><td><font size="" color="black">Address</b></td><td><input type="text" name="t5" style="font-family: Comic Sans MS" size="45"/></td></tr>
-		
-		 
-			<tr><td></td><td><input type="submit" value="Submit">
-			</td>
-			</table>
-			<br/><br/><br/><br/>
-				</div>	
-					
-				</div>
-				
-	</body>
-</html>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                    <label for="t1" class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
+                    <input type="text" name="t1" id="t1" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                </div>
+                <div>
+                    <label for="t2" class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                    <input type="password" name="t2" id="t2" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                    <label for="t3" class="block text-sm font-semibold text-slate-700 mb-2">Contact Number</label>
+                    <input type="text" name="t3" id="t3" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                </div>
+                <div>
+                    <label for="t4" class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                    <input type="email" name="t4" id="t4" required
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <div>
+                <label for="t5" class="block text-sm font-semibold text-slate-700 mb-2">Clinic/Address</label>
+                <textarea name="t5" id="t5" rows="2" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all"></textarea>
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 mt-4">
+                Register Account
+            </button>
+            
+            <p class="text-center text-sm text-slate-500 mt-4">
+                Already registered? 
+                <a href="{% url 'UserLogin' %}" class="text-blue-600 font-semibold hover:underline">Sign In</a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,74 +1,48 @@
-{% load static %}
-<html>
-<head>
-<title>Early Detection of Alzheimer's Disease</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
- <script LANGUAGE="Javascript" >
-function validate(){
-	var x=document.forms["f1"]["t1"].value;
-	var y=document.forms["f1"]["t2"].value;
-	
-	if(x == null || x==""){
-		window.alert("Username must be enter");
-		document.f1.t1.focus();
-		return false;
-	}
-	if(y == null || y==""){
-		window.alert("Password must be enter");
-		document.f1.t2.focus();
-		return false;
-	}
-	return true;
-}
-		
-	
-	</script>
-</head>
-<body>
-<div id="wrapper">
-	<div id="header">
-		<div id="logo">
-			<center><font size="4" color="white">Early Detection of Alzheimer's Disease Using Cognitive Features A Voting-Based Ensemble Machine Learning Approach</font></center></font>
-		</div>
-		<div id="slogan">
-			
-		</div>
-	</div>
-	<div id="menu">
-		<ul><center>
-	  <li><a href="{% url 'index' %}"><font size="" color="black">Home</a></font></li>
-      <li><a href="{% url 'UserLogin' %}"><font size="" color="black">User Login</a></li>
-     <li><a href="{% url 'Register' %}"><font size="" color="black">New User Signup Here</a></li>	
-		</center></ul>
-<br class="clearfix" />
-				</div>
-			
-	<div id="splash">
-		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
-	</div>	
-			<center>
-<form name="f1" method="post" action={% url 'UserLoginAction' %} OnSubmit="return validate()">
-	{% csrf_token %}<br/>
-   <h3><b>User Login Screen</b></h3>
-   
-	<font size="" color="black"><center>{{ data }}</center></font>
-						
-						<table align="center" width="80" >
-			 <tr><td><font size="" color="black">Username&nbsp;&nbsp;</b></td><td><input type="text" name="t1" style="font-family: Comic Sans MS" size="25"/></td></tr>
-         
-		  
-		<tr><td><font size="" color="black">Password&nbsp;&nbsp;</b></td><td><input type="password" name="t2" style="font-family: Comic Sans MS" size="25"/></td></tr>
+{% extends 'base.html' %}
 
-		
-		 
-			<tr><td></td><td><input type="submit" value="Login">
-			</td>
-			</table>
-			<br/><br/><br/><br/>
-				</div>	
-					
-				</div>
-				
-	</body>
-</html>
+{% block title %}User Login - AlzheimerCare AI{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto">
+    <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+        <div class="bg-blue-600 px-8 py-6">
+            <h2 class="text-2xl font-bold text-white">Welcome Back</h2>
+            <p class="text-blue-100 text-sm mt-1">Please sign in to your account</p>
+        </div>
+        
+        <form method="post" action="{% url 'UserLoginAction' %}" class="p-8 space-y-6">
+            {% csrf_token %}
+            
+            {% if data %}
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+                    <p class="text-red-700 text-sm font-medium">{{ data }}</p>
+                </div>
+            {% endif %}
+
+            <div>
+                <label for="t1" class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
+                <input type="text" name="t1" id="t1" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+                    placeholder="Enter your username">
+            </div>
+
+            <div>
+                <label for="t2" class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                <input type="password" name="t2" id="t2" required
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+                    placeholder="••••••••">
+            </div>
+
+            <button type="submit" 
+                class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 focus:ring-4 focus:ring-blue-100">
+                Sign In
+            </button>
+            
+            <p class="text-center text-sm text-slate-500 mt-6">
+                Don't have an account? 
+                <a href="{% url 'Register' %}" class="text-blue-600 font-semibold hover:underline">Create one</a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
