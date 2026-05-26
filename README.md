@@ -4,7 +4,9 @@
 [![Django Version](https://img.shields.io/badge/django-2.1.7-green.svg)](https://www.djangoproject.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. This project implements a high-performance **Voting-Based Ensemble** model, achieving superior predictive accuracy by combining multiple specialized machine learning algorithms.
+An advanced diagnostic decision-support system designed to identify Alzheimer's disease markers using clinical and cognitive features. 
+
+**Live Demo:** [https://web-production-3ca46.up.railway.app/](https://web-production-3ca46.up.railway.app/)
 
 ---
 
